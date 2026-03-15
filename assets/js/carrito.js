@@ -11,7 +11,7 @@ const productosData =[]
 async function CargarProductos() {
 
     try{
-        const respuesta = await fetch("./../data/productos.json");
+        const respuesta = await fetch("../../data/productos.json");
         const productos = await respuesta.json();
 
         productosData.push(...productos);//guardo los productos
