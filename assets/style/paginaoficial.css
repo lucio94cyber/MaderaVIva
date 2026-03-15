@@ -147,6 +147,7 @@ font-size: 24px;
 .categorias-grid{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    
     gap: 30px;
 }
 
@@ -166,6 +167,37 @@ font-size: 24px;
 .categoria:hover{
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/*COMO TRABAJAMOS*/
+
+.proceso{
+text-align:center;
+padding:50px 20px;
+}
+
+.proceso h2{
+    font-size: 35px;
+    margin: 10px;
+
+}
+
+.pasos{
+display:flex;
+flex-direction: column;
+align-items: center;
+gap:20px;
+margin-top: 20px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.paso{
+background:#724301;
+color: blanchedalmond;
+padding:20px;
+border-radius:10px;
+width:220px;
 }
 
 /*PRODUCTOS*/
