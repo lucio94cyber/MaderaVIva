@@ -1,0 +1,8 @@
+[
+{"id":1,"nombre":"Escritorio Turco","precio":150000,"imagen":"../../assets/productos/escritorio_turco.png"},
+{"id":2,"nombre":"Mesa de Luz","precio":120000,"imagen":"../../assets/productos/mesa_de_luz.png"},
+{"id":3,"nombre":"Rack Vinos","precio":100000,"imagen":"../../assets/productos/rack_vino.png"},
+{"id":4,"nombre":"Mesa Living","precio":180000,"imagen":"../../assets/productos/mueble_living.png"},
+{"id":5,"nombre":"Tronco Roll","precio":80000,"imagen":"../../assets/productos/tronco_roll.png"},
+{"id":6,"nombre":"Llave Raiz","precio":95000,"imagen":"../../assets/productos/llave_raiz.png"}
+]

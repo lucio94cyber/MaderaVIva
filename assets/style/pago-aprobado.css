@@ -1,0 +1,11 @@
+/* Boton de finalizar compra*/
+
+#carrito-whatsapp.boton-procesando{
+    background-color: rgb(91,90,89);
+    color: white;
+    cursor: not-allowed;/*cambia el cursor del mouse a un símbolo de prohibido 🚫*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}

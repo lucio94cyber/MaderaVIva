@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago Confirmado | Madera Viva</title>
+    <link rel="stylesheet" href="assets/style/pago-aprobado.css">
+</head>
+<body>
+
+<div class="confirmacion-pago">
+    <h1>✅ ¡Gracias por tu compra!</h1>
+    <p>Tu pago fue recibido correctamente.</p>
+    <p>📦 Tu pedido será entregado dentro de <strong>3 a 5 días hábiles</strong>.</p>
+    <p>📲 Cualquier consulta podés comunicarte al <strong>+54 9 11 1234-5678</strong>.</p>
+    <a href="../../index.html">Volver al inicio</a>
+</div>
+
+<script>
+    // Vacía el carrito cuando el pago fue aprobado
+    localStorage.removeItem("carrito");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madera Viva</title>
+    <link rel="shortcut icon" href="../../assets/logo oficial/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../assets/style/paginaoficial.css">
+    <link rel="stylesheet" href="../../assets/style/pago-aprobado.css">
+    <link rel="stylesheet" href="../../assets/style/carrito.css">
+
+    <script defer src="../../assets/js/carrito.js"></script>
+    <script defer src="../../assets/js/mercadopago.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <img src="../../assets/logo oficial/logo.png" alt="logo">
+
+        <ul>
+            <li><a href="../../index.html"><img src="../iconos/inicio.png" alt="inicio"></a></li>
+            <li><a href="../pages/tienda.html"><img src="../iconos/productos.png" alt="productos"></a></li>
+            <li id="carrito-cantidad">
+                <a href="#">
+                    <img src="../iconos/carrito.png" alt="carrito" id="carrito-icono">
+                    <span id="carrito-numero"></span>
+                </a>
+            </li>
+        </ul>
+    </header>
+
+    <section id="productos" class="lista-productos">
+        <h5>Productos</h5>
+        <div id="contenedor-productos"></div>
+    </section>
+
+
+    <div id="carrito-lista">
+        <h6>Mi Pedido</h6>
+        <div id="carrito-items"></div>
+
+        <div>
+            <strong>Total:</strong>
+            <span id="carrito-total">$0</span>
+        </div>
+
+        <div id="carrito-botones">
+            <button id="carrito-vaciar">Vaciar carrito</button>
+            <button id="carrito-cerrar">Cerrar</button>
+            <button id="carrito-whatsapp">Finalizar compra</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+
+    <div class="footer-contenido">
+
+        <div class="footer-marca">
+            <h3>Madera Viva</h3>
+            <p>Muebles de madera hechos a mano con diseño y dedicación.</p>
+        </div>
+
+        <div class="footer-contacto">
+            <h4>Contacto</h4>
+            <p>📍 Buenos Aires</p>
+            <p>📞 +54 11 0000 0000</p>
+            <p>📧 contacto@maderaviva.com</p>
+        </div>
+
+        <div class="footer-redes">
+            <h4>Seguinos</h4>
+            <p>Instagram</p>
+            <p>Facebook</p>
+            <p>WhatsApp</p>
+        </div>
+
+    </div>
+
+    <div class="footer-copy">
+        <p>© 2026 Madera Viva — Todos los derechos reservados</p>
+    </div>
+
+</footer>
+
+    <div id="mensaje-carrito"></div>
+</body>
+</html>

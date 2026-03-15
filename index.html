@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madera Viva</title>
+    <link rel="shortcut icon" href="assets/logo oficial/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/style/carrito.css">
+    <link rel="stylesheet" href="assets/style/pago-aprobado.css">
+    <link rel="stylesheet" href="assets/style/paginaoficial.css">
+
+    <script defer src="assets/js/carrito.js"></script>
+    <script defer src="assets/js/mercadopago.js"></script>
+</head>
+<body>
+
+    <header>
+        <img src="./assets/logo oficial/logo.png" alt="logo">
+
+        <ul>
+            <li><a href="./index.html"><img src="./assets/iconos/inicio.png" alt="inicio"></a></li>
+            <li><a href="./assets/pages/tienda.html"><img src="./assets/iconos/productos.png" alt="productos"></a></li>
+            <li id="carrito-cantidad">
+                <a href="#">
+                    <img src="../../assets/iconos/carrito.png" alt="carrito" id="carrito-icono">
+                    <span id="carrito-numero"></span>
+                </a>
+            </li>
+        </ul>
+    </header>
+
+    <main>
+        <h1>Madera a medida</h1>
+    </main>
+
+    <section class="seccion_secundario">
+        <div class="seccion_grupo_texto">
+        <p>Tu hogar, tu estilo, tus reglas</p>
+        <a href="./assets/pages/tienda.html">Nuestros Productos</a>
+        </div>
+        <img src="./assets/imagenes/lijando.jpg" alt="lijando">
+        <img src="./assets/imagenes/pintando.jpg" alt="pintando">
+        <img src="./assets/imagenes/trabajando.jpg" alt="trabajando">
+    </section>
+
+    <section class="seccion_taller">
+    <img src="./assets/imagenes/taller.jpg" alt="taller">
+
+    <div class="taller-texto">
+        <h2>Donde la madera cobra vida</h2>
+        <p>Cada pieza es trabajada a mano en nuestro taller.</p>
+    </div>
+</section>
+
+<section class="categorias">
+
+    <h2>Categorías</h2>
+
+    <div class="categorias-grid">
+
+        <div class="categoria">
+            <img src="./assets/imagenes/oficina.jpg" alt="Oficina">
+            <h3>Oficina</h3>
+        </div>
+
+        <div class="categoria">
+            <img src="./assets/imagenes/dormitorio.jpg" alt="Dormitorio">
+            <h3>Dormitorio</h3>
+        </div>
+
+        <div class="categoria">
+            <img src="./assets/imagenes/living.jpg" alt="Living">
+            <h3>Living</h3>
+        </div>
+
+        <div class="categoria">
+            <img src="./assets/imagenes/decoracion.jpg" alt="Decoración">
+            <h3>Decoración</h3>
+        </div>
+
+    </div>
+
+</section>
+
+
+    <section id="productos" class="lista-productos">
+        <h5>Productos</h5>
+        <div id="contenedor-productos"></div>
+    </section>
+
+
+    <div id="carrito-lista">
+        <h6>Mi Pedido</h6>
+        <div id="carrito-items"></div>
+
+        <div>
+            <strong>Total:</strong>
+            <span id="carrito-total">$0</span>
+        </div>
+
+        <div id="carrito-botones">
+            <button id="carrito-vaciar">Vaciar carrito</button>
+            <button id="carrito-cerrar">Cerrar</button>
+            <button id="carrito-whatsapp">Finalizar compra</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+
+    <div class="footer-contenido">
+
+        <div class="footer-marca">
+            <h3>Madera Viva</h3>
+            <p>Muebles de madera hechos a mano con diseño y dedicación.</p>
+        </div>
+
+        <div class="footer-contacto">
+            <h4>Contacto</h4>
+            <p>📍 Buenos Aires</p>
+            <p>📞 +54 11 0000 0000</p>
+            <p>📧 contacto@maderaviva.com</p>
+        </div>
+
+        <div class="footer-redes">
+            <h4>Seguinos</h4>
+            <p>Instagram</p>
+            <p>Facebook</p>
+            <p>WhatsApp</p>
+        </div>
+
+    </div>
+
+    <div class="footer-copy">
+        <p>© 2026 Madera Viva — Todos los derechos reservados</p>
+    </div>
+
+</footer>
+
+    <div id="mensaje-carrito"></div>
+</body>
+</html>
