@@ -38,6 +38,7 @@ function mostrarProductos(productos){
         carta.innerHTML =`
         <h3>${producto.nombre}</h3>
         <img src="${producto.imagen}" alt="${producto.nombre}">
+        <p>${producto.medida}</p>
         <p>$${producto.precio}</p>
         <button class="boton-agregar"data-id="${producto.id}">Agregar</button>
         `;
