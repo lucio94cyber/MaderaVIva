@@ -1,253 +1,697 @@
-// Carrito se conecta con LocalStorage y guardar el carrito cada vez que cambie 
-//Trae productos JSON a JS + mostrar los productos en HTML + activar botones
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+const STORAGE_KEY = "maderaVivaCarrito";
 
-function guardarCarritoLocal(){
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-}
+let carrito =
+JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
-const productosData =[]
-
-async function CargarProductos() {
-
-    try{
-        const respuesta = await fetch("../../data/productos.json");
-        const productos = await respuesta.json();
-
-        productosData.push(...productos);//guardo los productos
-        mostrarProductos(productos);//recién se crean los botones en HTML
-        ActivarBotones();//ahora sí existen, ahora funcionan
-        MensajeCarrito();//mensaje de producto agregado
-    }
-    catch(error){
-        console.error("Error:", error)
-    }
-}
-
-CargarProductos();
-EstructuraCarrito();
-
-function mostrarProductos(productos){
-
-    let contenedor = document.getElementById("contenedor-productos");
-
-    productos.forEach(producto => {
-        let carta = document.createElement("div");
-        carta.classList.add("productos-carta");
-
-        carta.innerHTML =`
-        <h3>${producto.nombre}</h3>
-        <img src="${producto.imagen}" alt="${producto.nombre}">
-        <p>${producto.medida}</p>
-        <p>$${producto.precio}</p>
-        <button class="boton-agregar"data-id="${producto.id}">Agregar</button>
-        `;
-        contenedor.appendChild(carta)
-    })
-}
-
-function ActivarBotones (){
-    document.querySelectorAll(".boton-agregar").forEach( boton => {
-        boton.addEventListener('click',() => {
-            const id = Number(boton.dataset.id);//tranforma el id a numero, ya que me lo trae automaticamente en texto
-            AgregarAlCarrito (id);
-        })
-    })
-}
-
-//buscar producto
-function AgregarAlCarrito (id){
-    
-    let Existe = carrito.find(producto => producto.id === id);
-
-    // 1. Buscar si ya existe en el carrito
-    if(Existe){
-        Existe.cantidad += 1;
-        guardarCarritoLocal();
-        EstructuraCarrito();
-        return;
-    }
-    // 2. Buscar el producto original en productosData
-    let ProductoOriginal = productosData.find(producto => producto.id === id)
+let productosData = [];
 
 
-    // 3. Clonar y agregar 1 unidad
-    let NuevoProducto ={
-        ...ProductoOriginal,
-        cantidad:1
-    }
-    carrito.push(NuevoProducto);
-    guardarCarritoLocal();
-    EstructuraCarrito();
-    CantidadIconoCarrito ();
-    TotalCarrito();
-}
+const isNestedPage =
+window.location.pathname.includes("/assets/pages/");
 
-//Abrir Cerrar carrito oculto + Vaciar Carrito
 
-let IconoCarrito = document.getElementById("carrito-icono")
-let ListaCarrito = document.getElementById("carrito-lista")
-let BotonVaciarCarrito = document.getElementById("carrito-vaciar")
+const ROOT =
+isNestedPage ? "../../" : "./";
 
-IconoCarrito.addEventListener("click",AbrirCarrito);
-document.getElementById("carrito-cerrar").addEventListener("click",CerrarCarrito);
-BotonVaciarCarrito.addEventListener("click", VaciarCarrito);
 
-function AbrirCarrito(){
+function guardarCarrito(){
 
-    ListaCarrito.classList.add("mostrar")
-}
-
-function CerrarCarrito(){
-
-    ListaCarrito.classList.remove("mostrar")
-}
-
-function VaciarCarrito(){
-
-    carrito = [];
-    guardarCarritoLocal();
-    EstructuraCarrito();
-}
-
-// Estructura del carrito
-
-function EstructuraCarrito(){
-    let contenedor = document.getElementById("carrito-items")
-    contenedor.innerHTML = "";
-    carrito.forEach(productos => {
-        let items = document.createElement("div")
-        items.classList.add("items-productos");
-        items.innerHTML =`
-        <img src="${productos.imagen}" class="carrito-img">
-            <div class="carrito-detalle">
-                <p>${productos.nombre}</p>
-                <span>$${productos.precio * productos.cantidad}</span>
-            </div>
-            <button class="carrito-restar" >-</button>
-            <span class="carrito-cantidad">${productos.cantidad}</span>
-            <button class="carrito-sumar" >+</button>`
-        ;
-        contenedor.appendChild(items);
-
-        // FUNCION DE LOS BOTONES
-
-        // Sumar productos
-        items.querySelector(".carrito-sumar").addEventListener("click", function(){
-            productos.cantidad += 1;
-            EstructuraCarrito()
-        })
-        //Restar productos
-        items.querySelector(".carrito-restar").addEventListener("click", function(){
-            productos.cantidad -= 1;
-            if (productos.cantidad === 0) {
-                carrito = carrito.filter(p => p.id !== productos.id);}
-                EstructuraCarrito()
-        })
-    })
-    guardarCarritoLocal();
-    CantidadIconoCarrito ();
-    TotalCarrito();
-}
-
-// Sumar total de los productos
-
-function TotalCarrito(){
-    
-    let total = carrito.reduce((acumulado,producto)=> acumulado + producto.precio * producto.cantidad,0)
-    
-    document.getElementById("carrito-total").textContent = `$${total}`;
-    return total;
-}
-
-TotalCarrito();
-
-// Actualizar numero de carrito en el icono
-
-function CantidadIconoCarrito (){
-
-    let CantidadTotal = carrito.reduce((acumulado,producto)=> acumulado + producto.cantidad,0)
-
-    document.getElementById("carrito-numero").textContent= `${CantidadTotal}`;
-    return CantidadTotal;
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(carrito)
+);
 
 }
 
-CantidadIconoCarrito ()
 
-// Aviso de que se agrego un producto al carrito
+function dinero(valor){
 
-let MensajeTiempo = null;
-
-function MensajeCarrito(){
-
-    let mensaje = document.getElementById("mensaje-carrito")
-    document.querySelectorAll(".boton-agregar").forEach( boton => 
-    boton.addEventListener('click',() => {
-    let id = Number(boton.dataset.id);
-    let BuscarProducto= productosData.find(producto => producto.id === id)
-
-    mensaje.textContent=(`${BuscarProducto.nombre} agregado al carrito`)
-    mensaje.classList.add("mostrar")
-
-    clearTimeout(MensajeTiempo);//cancela el temporizador anterior
-    MensajeTiempo = setTimeout(() => {
-        mensaje.classList.remove("mostrar");
-        }, 1000);
-
-    }))
+return new Intl.NumberFormat(
+"es-AR"
+).format(valor);
 
 }
-MensajeCarrito()
 
 
-// Finalizar Compra y redirigirlo a Mercado Pago
+function mostrarMensaje(texto){
 
-document.getElementById("carrito-whatsapp")
-.addEventListener("click", FinalizarCompra)
+const mensaje =
+document.getElementById(
+"mensaje-carrito"
+);
 
-async function FinalizarCompra(){
+if(!mensaje) return;
 
-const boton = document.getElementById("carrito-whatsapp");
+mensaje.textContent = texto;
 
-    if(carrito.length === 0){
-        alert("El carrito está vacío");
-        return; // detiene la función si no hay productos
-    }
+mensaje.classList.add("mostrar");
 
-boton.classList.add("boton-procesando");
-boton.textContent = "Procesando ⏳";
-boton.disabled = true;
+setTimeout(() => {
 
-    const items = carrito.map(producto => ({ //transforma los productos del carrito al formato que pide la API de Mercado Pago
-    title: producto.nombre, // nombre del producto
-    quantity: producto.cantidad, // cantidad
-    unit_price: producto.precio, // precio por unidad
-    currency_id: "ARS", // moneda argentina
-    picture_url: producto.imagen, // imagen del producto
-    description: producto.nombre // descripción que aparece en el checkout
-    }));
+mensaje.classList.remove("mostrar");
 
-    try{
+},2200);
 
-        const response = await fetch(
-        "https://api.mercadopago.com/checkout/preferences",
-        {
-            method: "POST",
-            headers:{
-                "Content-Type":"application/json", // indica que enviamos datos en formato JSON
-                "Authorization":"Bearer TEST-2842962534545081-030915-73ad8a1b71d53428829e63064f5a23aa-179836166"
-            },
-            body: JSON.stringify({ // convierte el objeto JS a JSON para enviarlo
-                items: items // envía la lista de productos que armamos arriba
-            })
-        });
-
-        const data = await response.json(); // convierte la respuesta de la API en un objeto JS
-
-        window.location.href = data.init_point; // redirige al usuario al checkout de Mercado Pago para pagar
-
-    }catch(error){
-        console.error("Error al crear pago", error)
-    }
 }
+
+
+
+async function cargarProductos(){
+
+const contenedor =
+document.getElementById(
+"contenedor-productos"
+);
+
+if(!contenedor) return;
+
+
+try{
+
+const respuesta =
+await fetch(
+ROOT + "data/productos.json"
+);
+
+if(!respuesta.ok){
+
+throw new Error(
+"No se pudo cargar el catálogo"
+);
+
+}
+
+
+productosData =
+await respuesta.json();
+
+
+mostrarProductos();
+
+
+}catch(error){
+
+console.error(error);
+
+contenedor.innerHTML = `
+<div class="catalog-error">
+
+<h3>
+No pudimos cargar la colección.
+</h3>
+
+<p>
+Actualizá la página e intentá nuevamente.
+</p>
+
+</div>
+`;
+
+}
+
+}
+
+
+
+function mostrarProductos(){
+
+const contenedor =
+document.getElementById(
+"contenedor-productos"
+);
+
+if(!contenedor) return;
+
+
+contenedor.innerHTML = "";
+
+
+productosData.forEach(
+(producto,index) => {
+
+
+const tarjeta =
+document.createElement("article");
+
+
+tarjeta.className =
+"catalog-product";
+
+
+const imagen =
+ROOT +
+"assets/productos/" +
+producto.imagen;
+
+
+tarjeta.innerHTML = `
+
+<div class="catalog-product-image">
+
+<span class="product-number">
+${String(index+1).padStart(2,"0")}
+</span>
+
+<img
+src="${imagen}"
+alt="${producto.nombre}"
+loading="lazy">
+
+<button
+class="product-quick-add"
+data-id="${producto.id}">
+
+Agregar +
+
+</button>
+
+</div>
+
+
+<div class="catalog-product-info">
+
+<div>
+
+<small>
+MADERA VIVA
+</small>
+
+<h2>
+${producto.nombre}
+</h2>
+
+<p>
+${producto.medida}
+</p>
+
+</div>
+
+
+<div class="product-price">
+
+<strong>
+$${dinero(producto.precio)}
+</strong>
+
+<button
+class="add-button"
+data-id="${producto.id}">
+
+Agregar al pedido
+<span>→</span>
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+
+contenedor.appendChild(tarjeta);
+
+});
+
+
+document
+.querySelectorAll("[data-id]")
+.forEach(button => {
+
+button.addEventListener(
+"click",
+() => {
+
+agregarAlCarrito(
+Number(button.dataset.id)
+);
+
+});
+
+});
+
+}
+
+
+
+function agregarAlCarrito(id){
+
+const producto =
+productosData.find(
+p => p.id === id
+);
+
+
+if(!producto) return;
+
+
+const existente =
+carrito.find(
+p => p.id === id
+);
+
+
+if(existente){
+
+existente.cantidad += 1;
+
+}else{
+
+carrito.push({
+
+...producto,
+
+cantidad:1
+
+});
+
+}
+
+
+guardarCarrito();
+
+renderCarrito();
+
+mostrarMensaje(
+producto.nombre +
+" agregado a tu pedido"
+);
+
+
+abrirCarrito();
+
+}
+
+
+
+function renderCarrito(){
+
+const contenedor =
+document.getElementById(
+"carrito-items"
+);
+
+const totalElement =
+document.getElementById(
+"carrito-total"
+);
+
+const numero =
+document.getElementById(
+"carrito-numero"
+);
+
+const empty =
+document.getElementById(
+"cart-empty"
+);
+
+
+if(!contenedor) return;
+
+
+contenedor.innerHTML = "";
+
+
+let total = 0;
+
+let cantidadTotal = 0;
+
+
+carrito.forEach(
+(producto,index) => {
+
+
+const subtotal =
+producto.precio *
+producto.cantidad;
+
+
+total += subtotal;
+
+cantidadTotal +=
+producto.cantidad;
+
+
+const item =
+document.createElement(
+"div"
+);
+
+
+item.className =
+"cart-product";
+
+
+item.innerHTML = `
+
+<img
+src="${ROOT}assets/productos/${producto.imagen}"
+alt="${producto.nombre}">
+
+
+<div class="cart-product-data">
+
+<div>
+
+<strong>
+${producto.nombre}
+</strong>
+
+<span>
+${producto.medida}
+</span>
+
+</div>
+
+
+<div class="cart-product-bottom">
+
+<strong>
+$${dinero(subtotal)}
+</strong>
+
+
+<div class="quantity">
+
+<button
+data-action="minus"
+data-index="${index}">
+−
+</button>
+
+<span>
+${producto.cantidad}
+</span>
+
+<button
+data-action="plus"
+data-index="${index}">
++
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+
+contenedor.appendChild(item);
+
+});
+
+
+if(totalElement){
+
+totalElement.textContent =
+"$" + dinero(total);
+
+}
+
+
+if(numero){
+
+numero.textContent =
+cantidadTotal;
+
+}
+
+
+if(empty){
+
+empty.style.display =
+carrito.length
+? "none"
+: "block";
+
+}
+
+
+document
+.querySelectorAll(
+"[data-action]"
+)
+.forEach(button => {
+
+button.addEventListener(
+"click",
+() => {
+
+const index =
+Number(
+button.dataset.index
+);
+
+if(
+button.dataset.action === "plus"
+){
+
+carrito[index].cantidad += 1;
+
+}
+
+
+if(
+button.dataset.action === "minus"
+){
+
+carrito[index].cantidad -= 1;
+
+
+if(
+carrito[index].cantidad <= 0
+){
+
+carrito.splice(index,1);
+
+}
+
+}
+
+
+guardarCarrito();
+
+renderCarrito();
+
+});
+
+});
+
+}
+
+
+
+function vaciarCarrito(){
+
+if(!carrito.length){
+
+mostrarMensaje(
+"El pedido ya está vacío"
+);
+
+return;
+
+}
+
+
+carrito = [];
+
+guardarCarrito();
+
+renderCarrito();
+
+mostrarMensaje(
+"Pedido vaciado"
+);
+
+}
+
+
+
+function abrirCarrito(){
+
+const drawer =
+document.getElementById(
+"carrito-lista"
+);
+
+if(!drawer) return;
+
+drawer.classList.add(
+"mostrar"
+);
+
+document.body.classList.add(
+"cart-open"
+);
+
+}
+
+
+
+function cerrarCarrito(){
+
+const drawer =
+document.getElementById(
+"carrito-lista"
+);
+
+if(!drawer) return;
+
+drawer.classList.remove(
+"mostrar"
+);
+
+document.body.classList.remove(
+"cart-open"
+);
+
+}
+
+
+
+function continuarCheckout(){
+
+if(!carrito.length){
+
+mostrarMensaje(
+"Agregá al menos un producto"
+);
+
+return;
+
+}
+
+
+window.location.href =
+ROOT +
+"assets/pages/checkout.html";
+
+}
+
+
+
+document.addEventListener(
+"DOMContentLoaded",
+() => {
+
+
+cargarProductos();
+
+renderCarrito();
+
+
+const cart =
+document.getElementById(
+"header-cart"
+);
+
+cart?.addEventListener(
+"click",
+abrirCarrito
+);
+
+
+document
+.getElementById(
+"carrito-cerrar"
+)
+?.addEventListener(
+"click",
+cerrarCarrito
+);
+
+
+document
+.getElementById(
+"cart-overlay"
+)
+?.addEventListener(
+"click",
+cerrarCarrito
+);
+
+
+document
+.getElementById(
+"carrito-vaciar"
+)
+?.addEventListener(
+"click",
+vaciarCarrito
+);
+
+
+document
+.getElementById(
+"carrito-checkout"
+)
+?.addEventListener(
+"click",
+continuarCheckout
+);
+
+
+document
+.addEventListener(
+"keydown",
+event => {
+
+if(
+event.key === "Escape"
+){
+
+cerrarCarrito();
+
+}
+
+});
+
+
+const menu =
+document.getElementById(
+"menu-button"
+);
+
+const nav =
+document.getElementById(
+"mobile-nav"
+);
+
+
+menu?.addEventListener(
+"click",
+() => {
+
+nav?.classList.toggle("mostrar");
+
+menu.classList.toggle("activo");
+
+});
+
+
+nav
+?.querySelectorAll("a")
+.forEach(link => {
+
+link.addEventListener(
+"click",
+() => {
+
+nav.classList.remove(
+"mostrar"
+);
+
+menu.classList.remove(
+"activo"
+);
+
+});
+
+});
+
+
+});
