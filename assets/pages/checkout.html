@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta
+name="description"
+content="Finalizá tu pedido en Madera Viva."
+>
+
+<link
+rel="icon"
+href="../logo oficial/logo.png">
+
+<link
+rel="stylesheet"
+href="../style/paginaoficial.css">
+
+<title>Madera Viva | Finalizar pedido</title>
+
+</head>
+
+
+<body class="checkout-page">
+
+
+<header class="site-header">
+
+<div class="header-inner">
+
+<a
+href="../../index.html"
+class="brand">
+
+<img
+src="../logo oficial/logo.png"
+alt="Madera Viva">
+
+</a>
+
+
+<div class="checkout-progress">
+
+<span class="active">
+01 Pedido
+</span>
+
+<span>
+02 Entrega
+</span>
+
+<span>
+03 Pago
+</span>
+
+</div>
+
+</div>
+
+</header>
+
+
+
+<main class="checkout-main">
+
+
+<section class="checkout-heading">
+
+<span class="eyebrow">
+MADERA VIVA / CHECKOUT
+</span>
+
+<h1>
+Finalizá tu
+<br>
+<em>pedido.</em>
+</h1>
+
+<p>
+Completá tus datos. No necesitás contactarnos:
+todo el proceso se realiza desde acá.
+</p>
+
+</section>
+
+
+
+<section class="checkout-layout">
+
+
+<div class="checkout-form">
+
+
+<div class="checkout-block">
+
+<div class="checkout-block-title">
+
+<span>
+01
+</span>
+
+<div>
+
+<h2>
+Tus datos
+</h2>
+
+<p>
+Los necesitamos para preparar la entrega.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="form-grid">
+
+<div class="field">
+
+<label for="nombre">
+Nombre
+</label>
+
+<input
+id="nombre"
+type="text"
+autocomplete="given-name"
+required>
+
+</div>
+
+
+<div class="field">
+
+<label for="apellido">
+Apellido
+</label>
+
+<input
+id="apellido"
+type="text"
+autocomplete="family-name"
+required>
+
+</div>
+
+
+<div class="field full">
+
+<label for="email">
+Email
+</label>
+
+<input
+id="email"
+type="email"
+autocomplete="email"
+required>
+
+</div>
+
+
+<div class="field full">
+
+<label for="telefono">
+Teléfono
+</label>
+
+<input
+id="telefono"
+type="tel"
+autocomplete="tel"
+required>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="checkout-block">
+
+<div class="checkout-block-title">
+
+<span>
+02
+</span>
+
+<div>
+
+<h2>
+Entrega
+</h2>
+
+<p>
+Elegí cómo querés recibir tu pedido.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="delivery-options">
+
+
+<label class="delivery-option">
+
+<input
+type="radio"
+name="entrega"
+value="envio"
+checked>
+
+<div>
+
+<strong>
+Envío a domicilio
+</strong>
+
+<span>
+Coordinaremos la logística según tu localidad.
+</span>
+
+</div>
+
+</label>
+
+
+<label class="delivery-option">
+
+<input
+type="radio"
+name="entrega"
+value="retiro">
+
+<div>
+
+<strong>
+Retiro
+</strong>
+
+<span>
+Retiro coordinado en Buenos Aires.
+</span>
+
+</div>
+
+</label>
+
+</div>
+
+
+<div
+id="direccion-container"
+class="address-fields">
+
+
+<div class="field full">
+
+<label for="direccion">
+Dirección
+</label>
+
+<input
+id="direccion"
+type="text"
+autocomplete="street-address"
+required>
+
+</div>
+
+
+<div class="field">
+
+<label for="localidad">
+Localidad
+</label>
+
+<input
+id="localidad"
+type="text"
+required>
+
+</div>
+
+
+<div class="field">
+
+<label for="codigo">
+Código postal
+</label>
+
+<input
+id="codigo"
+type="text"
+autocomplete="postal-code"
+required>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="checkout-block">
+
+<div class="checkout-block-title">
+
+<span>
+03
+</span>
+
+<div>
+
+<h2>
+Forma de pago
+</h2>
+
+<p>
+Seleccioná una opción.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="payment-options">
+
+
+<label class="payment-option">
+
+<input
+type="radio"
+name="pago"
+value="mercadopago"
+checked>
+
+<div>
+
+<strong>
+Mercado Pago
+</strong>
+
+<span>
+Pago online seguro.
+</span>
+
+</div>
+
+<b>
+›
+</b>
+
+</label>
+
+
+<label class="payment-option">
+
+<input
+type="radio"
+name="pago"
+value="transferencia">
+
+<div>
+
+<strong>
+Transferencia bancaria
+</strong>
+
+<span>
+Los datos aparecerán luego de confirmar.
+</span>
+
+</div>
+
+<b>
+›
+</b>
+
+</label>
+
+</div>
+
+</div>
+
+
+
+<div class="checkout-block">
+
+<div class="checkout-block-title">
+
+<span>
+04
+</span>
+
+<div>
+
+<h2>
+Confirmación
+</h2>
+
+<p>
+Revisá tus datos antes de generar el pedido.
+</p>
+
+</div>
+
+</div>
+
+
+<label class="checkbox-field">
+
+<input
+id="terminos"
+type="checkbox"
+required>
+
+<span>
+Confirmo que los datos ingresados son correctos
+y acepto las condiciones de compra.
+</span>
+
+</label>
+
+
+<button
+id="confirmar-pedido"
+class="checkout-confirm">
+
+Generar pedido
+
+<span>
+→
+</span>
+
+</button>
+
+
+<p
+id="checkout-error"
+class="checkout-error">
+</p>
+
+</div>
+
+</div>
+
+
+
+<aside class="order-summary">
+
+<div class="summary-head">
+
+<span>
+RESUMEN
+</span>
+
+<h2>
+Tu pedido
+</h2>
+
+</div>
+
+
+<div
+id="checkout-items"
+class="summary-items">
+</div>
+
+
+<div class="summary-total">
+
+<span>
+Total
+</span>
+
+<strong id="checkout-total">
+$0
+</strong>
+
+</div>
+
+
+<div class="summary-note">
+
+<strong>
+Seguimiento incluido
+</strong>
+
+<p>
+Al confirmar recibirás un número
+de pedido para consultar el estado
+de tu compra.
+</p>
+
+</div>
+
+</aside>
+
+
+</section>
+
+</main>
+
+
+
+<script src="../js/checkout.js"></script>
+
+</body>
+
+</html>
