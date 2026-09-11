@@ -1,88 +1,432 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Madera Viva</title>
-    <link rel="shortcut icon" href="../../assets/logo oficial/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="../../assets/style/paginaoficial.css">
-    <link rel="stylesheet" href="../../assets/style/pago-aprobado.css">
-    <link rel="stylesheet" href="../../assets/style/carrito.css">
+<html lang="es">
 
-    <script defer src="../../assets/js/carrito.js"></script>
-    <script defer src="../../assets/js/mercadopago.js"></script>
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta
+name="description"
+content="Colección Madera Viva — muebles y objetos de madera."
+>
+
+<link
+rel="icon"
+href="../logo oficial/logo.png">
+
+<link
+rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link
+rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="../style/paginaoficial.css">
+
+<title>Madera Viva | Colección</title>
+
 </head>
 
-<body>
 
-    <header>
-        <img src="../../assets/logo oficial/logo.png" alt="logo">
-
-        <ul>
-            <li><a href="../../index.html"><img src="../iconos/inicio.png" alt="inicio"></a></li>
-            <li><a href="../pages/tienda.html"><img src="../iconos/productos.png" alt="productos"></a></li>
-            <li id="carrito-cantidad">
-                <a href="#">
-                    <img src="../iconos/carrito.png" alt="carrito" id="carrito-icono">
-                    <span id="carrito-numero"></span>
-                </a>
-            </li>
-        </ul>
-    </header>
-
-    <section id="productos" class="lista-productos">
-        <h5>Productos</h5>
-        <div id="contenedor-productos"></div>
-    </section>
+<body class="shop-page">
 
 
-    <div id="carrito-lista">
-        <h6>Mi Pedido</h6>
-        <div id="carrito-items"></div>
+<header class="site-header">
 
-        <div>
-            <strong>Total:</strong>
-            <span id="carrito-total">$0</span>
-        </div>
+<div class="header-inner">
 
-        <div id="carrito-botones">
-            <button id="carrito-vaciar">Vaciar carrito</button>
-            <button id="carrito-cerrar">Cerrar</button>
-            <button id="carrito-whatsapp">Finalizar compra</button>
-        </div>
-    </div>
+<a
+href="../../index.html"
+class="brand">
 
-    <footer class="footer">
+<img
+src="../logo oficial/logo.png"
+alt="Madera Viva">
 
-    <div class="footer-contenido">
+</a>
 
-        <div class="footer-marca">
-            <h3>Madera Viva</h3>
-            <p>Muebles de madera hechos a mano con diseño y dedicación.</p>
-        </div>
 
-        <div class="footer-contacto">
-            <h4>Contacto</h4>
-            <p>📍 Buenos Aires</p>
-            <p>📞 +54 11 0000 0000</p>
-            <p>📧 contacto@maderaviva.com</p>
-        </div>
+<nav class="desktop-nav">
 
-        <div class="footer-redes">
-            <h4>Seguinos</h4>
-            <p>Instagram</p>
-            <p>Facebook</p>
-            <p>WhatsApp</p>
-        </div>
+<a href="../../index.html">
+Inicio
+</a>
 
-    </div>
+<a
+href="./tienda.html"
+class="active">
+Colección
+</a>
 
-    <div class="footer-copy">
-        <p>© 2026 Madera Viva — Todos los derechos reservados</p>
-    </div>
+<a href="../../index.html#proceso">
+Proceso
+</a>
+
+<a href="./seguimiento.html">
+Seguimiento
+</a>
+
+</nav>
+
+
+<div class="header-actions">
+
+<a
+href="./tienda.html"
+class="header-shop">
+
+Colección
+<span>↗</span>
+
+</a>
+
+
+<button
+id="header-cart"
+class="header-cart">
+
+<span class="cart-symbol">
+Bag
+</span>
+
+<span
+id="carrito-numero"
+class="cart-number">
+0
+</span>
+
+</button>
+
+
+<button
+id="menu-button"
+class="menu-button">
+
+<span></span>
+<span></span>
+<span></span>
+
+</button>
+
+</div>
+
+</div>
+
+
+<nav
+id="mobile-nav"
+class="mobile-nav">
+
+<a href="../../index.html">
+Inicio
+</a>
+
+<a href="./tienda.html">
+Colección
+</a>
+
+<a href="../../index.html#proceso">
+Proceso
+</a>
+
+<a href="./seguimiento.html">
+Seguimiento
+</a>
+
+</nav>
+
+</header>
+
+
+
+<main>
+
+
+<section class="shop-hero">
+
+<div>
+
+<span class="eyebrow">
+MADERA VIVA / COLECCIÓN
+</span>
+
+<h1>
+Piezas para
+<br>
+<em>vivirlas.</em>
+</h1>
+
+<p>
+Diseños pensados para formar parte
+de tu espacio.
+</p>
+
+</div>
+
+</section>
+
+
+
+<section class="catalog-section">
+
+<div class="catalog-top">
+
+<span>
+01 — 06
+</span>
+
+<p>
+Explorá nuestra selección de muebles
+y objetos de madera.
+</p>
+
+</div>
+
+
+<div
+id="contenedor-productos"
+class="catalog-grid">
+
+</div>
+
+</section>
+
+
+
+<section class="shop-logistics">
+
+<div>
+
+<span class="eyebrow">
+COMPRA SIMPLE
+</span>
+
+<h2>
+Elegís.
+<br>
+Comprás.
+<br>
+<em>Recibís.</em>
+</h2>
+
+</div>
+
+
+<div class="shop-logistics-text">
+
+<p>
+Podés realizar todo el pedido online,
+cargar tus datos de entrega y elegir
+el medio de pago sin necesidad
+de contactarnos.
+</p>
+
+
+<a
+href="./seguimiento.html"
+class="text-link">
+
+¿Cómo sigo mi pedido?
+<span>→</span>
+
+</a>
+
+</div>
+
+</section>
+
+</main>
+
+
+
+<aside
+id="carrito-lista"
+class="cart-drawer">
+
+<div
+id="cart-overlay"
+class="cart-overlay">
+</div>
+
+
+<div class="cart-panel">
+
+<div class="cart-header">
+
+<div>
+
+<span>
+MADERA VIVA
+</span>
+
+<h2>
+Tu pedido
+</h2>
+
+</div>
+
+
+<button
+id="carrito-cerrar"
+class="cart-close">
+
+×
+
+</button>
+
+</div>
+
+
+<div
+id="carrito-items"
+class="cart-items">
+</div>
+
+
+<div
+id="cart-empty"
+class="cart-empty">
+
+<p>
+Todavía no agregaste ninguna pieza.
+</p>
+
+</div>
+
+
+<div class="cart-summary">
+
+<div>
+
+<span>
+Total
+</span>
+
+<strong id="carrito-total">
+$0
+</strong>
+
+</div>
+
+
+<button
+id="carrito-checkout"
+class="checkout-button">
+
+Continuar con el pedido
+<span>→</span>
+
+</button>
+
+
+<button
+id="carrito-vaciar"
+class="clear-cart">
+
+Vaciar pedido
+
+</button>
+
+</div>
+
+</div>
+
+</aside>
+
+
+<div
+id="mensaje-carrito"
+class="cart-message">
+</div>
+
+
+
+<footer>
+
+<div class="footer-main">
+
+<div class="footer-brand">
+
+<img
+src="../logo oficial/logo.png"
+alt="Madera Viva">
+
+<p>
+Diseño, madera y oficio.
+</p>
+
+</div>
+
+
+<div class="footer-column">
+
+<span>
+EXPLORAR
+</span>
+
+<a href="../../index.html">
+Inicio
+</a>
+
+<a href="./tienda.html">
+Colección
+</a>
+
+<a href="../../index.html#proceso">
+Proceso
+</a>
+
+</div>
+
+
+<div class="footer-column">
+
+<span>
+TU PEDIDO
+</span>
+
+<a href="./checkout.html">
+Checkout
+</a>
+
+<a href="./seguimiento.html">
+Seguimiento
+</a>
+
+</div>
+
+</div>
+
+
+<div class="footer-bottom">
+
+<span>
+© 2026 Madera Viva
+</span>
+
+<span>
+Diseño y desarrollo web · AlwaysHouse
+</span>
+
+</div>
 
 </footer>
 
-    <div id="mensaje-carrito"></div>
+
+<script src="../js/carrito.js"></script>
+
 </body>
+
 </html>
