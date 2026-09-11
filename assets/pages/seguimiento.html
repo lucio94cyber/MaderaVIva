@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+name="description"
+content="Seguimiento de pedidos de Madera Viva."
+>
+
+<link
+rel="icon"
+href="../logo oficial/logo.png"
+type="image/png"
+>
+
+<link
+rel="stylesheet"
+href="../style/paginaoficial.css"
+>
+
+<title>Madera Viva | Seguimiento</title>
+
+</head>
+
+
+<body class="tracking-page">
+
+
+<header class="site-header">
+
+<div class="header-inner">
+
+<a
+href="../../index.html"
+class="brand"
+>
+
+<img
+src="../logo oficial/logo.png"
+alt="Madera Viva"
+>
+
+</a>
+
+
+<nav class="desktop-nav">
+
+<a href="../../index.html">
+Inicio
+</a>
+
+<a href="./tienda.html">
+Colección
+</a>
+
+<a href="../../index.html#proceso">
+Proceso
+</a>
+
+<a
+href="./seguimiento.html"
+class="active"
+>
+Seguimiento
+</a>
+
+</nav>
+
+
+<div class="header-actions">
+
+<a
+href="./tienda.html"
+class="header-shop"
+>
+
+Comprar
+
+<span>↗</span>
+
+</a>
+
+</div>
+
+</div>
+
+</header>
+
+
+
+<main class="tracking-main">
+
+
+<section class="tracking-hero">
+
+<div>
+
+<span class="eyebrow">
+MADERA VIVA / SEGUIMIENTO
+</span>
+
+<h1>
+
+Seguí tu
+
+<br>
+
+<em>pedido.</em>
+
+</h1>
+
+<p>
+
+Ingresá el número de pedido que recibiste
+al finalizar tu compra.
+
+</p>
+
+</div>
+
+
+<div class="tracking-search">
+
+<label for="numero-pedido">
+NÚMERO DE PEDIDO
+</label>
+
+<div class="tracking-input">
+
+<input
+id="numero-pedido"
+type="text"
+placeholder="MV-260911-1234"
+autocomplete="off"
+>
+
+<button
+id="buscar-pedido"
+type="button"
+>
+
+Buscar
+
+<span>→</span>
+
+</button>
+
+</div>
+
+<p class="tracking-example">
+
+Ejemplo: MV-260911-1234
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<section
+id="resultado-pedido"
+class="tracking-result"
+>
+
+<div class="tracking-empty">
+
+<span>
+MV
+</span>
+
+<h2>
+Consultá tu pedido
+</h2>
+
+<p>
+Ingresá tu número para conocer
+en qué etapa se encuentra.
+</p>
+
+</div>
+
+</section>
+
+
+
+<section class="tracking-help">
+
+<div>
+
+<span class="eyebrow">
+MADERA VIVA
+</span>
+
+<h2>
+Del taller
+
+<br>
+
+a tu <em>espacio.</em>
+
+</h2>
+
+</div>
+
+<p>
+
+Cada pedido atraviesa distintas etapas
+antes de llegar a destino. Desde esta
+página podés consultar el estado cuando
+quieras.
+
+</p>
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+<div class="footer-main">
+
+<div class="footer-brand">
+
+<img
+src="../logo oficial/logo.png"
+alt="Madera Viva"
+>
+
+<p>
+Diseño, madera y oficio.
+</p>
+
+</div>
+
+
+<div class="footer-column">
+
+<span>
+EXPLORAR
+</span>
+
+<a href="../../index.html">
+Inicio
+</a>
+
+<a href="./tienda.html">
+Colección
+</a>
+
+<a href="../../index.html#proceso">
+Proceso
+</a>
+
+</div>
+
+
+<div class="footer-column">
+
+<span>
+TU PEDIDO
+</span>
+
+<a href="./tienda.html">
+Comprar
+</a>
+
+<a href="./checkout.html">
+Checkout
+</a>
+
+<a href="./seguimiento.html">
+Seguimiento
+</a>
+
+</div>
+
+
+<div class="footer-column">
+
+<span>
+MADERA VIVA
+</span>
+
+<p>
+Buenos Aires
+</p>
+
+<p>
+Diseño y fabricación
+</p>
+
+</div>
+
+</div>
+
+
+<div class="footer-bottom">
+
+<span>
+© 2026 Madera Viva
+</span>
+
+<span>
+Diseño y desarrollo web · AlwaysHouse
+</span>
+
+</div>
+
+</footer>
+
+
+
+<script src="../js/seguimiento.js"></script>
+
+
+<script>
+
+const input =
+document.getElementById(
+"numero-pedido"
+);
+
+const button =
+document.getElementById(
+"buscar-pedido"
+);
+
+
+function buscar(){
+
+const numero =
+input.value.trim();
+
+if(!numero){
+
+input.focus();
+
+return;
+
+}
+
+if(
+typeof mostrarPedido ===
+"function"
+){
+
+mostrarPedido(numero);
+
+}else{
+
+const evento =
+new CustomEvent(
+"buscarPedido",
+{
+detail:{numero}
+}
+);
+
+document.dispatchEvent(
+evento
+);
+
+}
+
+}
+
+
+button.addEventListener(
+"click",
+buscar
+);
+
+
+input.addEventListener(
+"keydown",
+event => {
+
+if(event.key === "Enter"){
+
+buscar();
+
+}
+
+}
+);
+
+
+const ultimo =
+localStorage.getItem(
+"maderaVivaUltimoPedido"
+);
+
+if(ultimo){
+
+input.value = ultimo;
+
+}
+
+</script>
+
+
+</body>
+
+</html>
