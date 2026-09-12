@@ -1,240 +1,217 @@
-const ORDER_KEY =
-"maderaVivaPedidos";
+const ORDER_KEY = "maderaVivaPedidos";
+
+const input = document.getElementById("numero-pedido");
+const buscar = document.getElementById("buscar-pedido");
+const resultado = document.getElementById("resultado-pedido");
+const error = document.getElementById("tracking-error");
 
 
-const input =
-document.getElementById(
-"numero-pedido"
-);
+function dinero(valor) {
 
-const buscar =
-document.getElementById(
-"buscar-pedido"
-);
+    return new Intl.NumberFormat("es-AR").format(valor);
+
+}
 
 
-const resultado =
-document.getElementById(
-"resultado-pedido"
-);
+function buscarPedido() {
+
+    const numero = input.value
+        .trim()
+        .toUpperCase();
+
+    if (!numero) {
+
+        mostrarError("Ingresá un número de pedido.");
+
+        return;
+
+    }
 
 
-const error =
-document.getElementById(
-"tracking-error"
-);
+    const pedidos = JSON.parse(
+        localStorage.getItem(ORDER_KEY)
+    ) || [];
 
 
+    const pedido = pedidos.find(
+        p =>
+            p.numero &&
+            p.numero.toUpperCase() === numero
+    );
 
-function dinero(valor){
 
-return new Intl.NumberFormat(
-"es-AR"
-).format(valor);
+    if (!pedido) {
+
+        mostrarError(
+            "No encontramos ese pedido en este dispositivo."
+        );
+
+        resultado.classList.remove("mostrar");
+
+        return;
+
+    }
+
+
+    error.textContent = "";
+
+    mostrarPedido(pedido);
 
 }
 
 
 
-function buscarPedido(){
+function mostrarPedido(pedido) {
 
-const numero =
-input.value
-.trim()
-.toUpperCase();
+    resultado.classList.add("mostrar");
 
 
-if(!numero){
+    const numero = document.getElementById(
+        "resultado-numero"
+    );
 
-mostrarError(
-"Ingresá un número de pedido."
-);
+    const estado = document.getElementById(
+        "resultado-estado"
+    );
 
-return;
+    const cliente = document.getElementById(
+        "cliente-pedido"
+    );
 
-}
+    const total = document.getElementById(
+        "total-pedido"
+    );
 
-
-const pedidos =
-JSON.parse(
-localStorage.getItem(
-ORDER_KEY
-)
-) || [];
-
-
-const pedido =
-pedidos.find(
-p =>
-p.numero.toUpperCase() ===
-numero
-);
+    const entrega = document.getElementById(
+        "entrega-pedido"
+    );
 
 
-if(!pedido){
+    if (numero) {
 
-mostrarError(
-"No encontramos ese pedido en este dispositivo."
-);
+        numero.textContent = pedido.numero;
 
-resultado.classList.remove(
-"mostrar"
-);
-
-return;
-
-}
+    }
 
 
-error.textContent = "";
+    const estados = {
 
-mostrarPedido(
-pedido
-);
+        recibido: "Pedido recibido",
 
-}
+        preparacion: "En preparación",
 
+        despachado: "Despachado",
 
+        entregado: "Entregado"
 
-function mostrarPedido(
-pedido
-){
-
-resultado.classList.add(
-"mostrar"
-);
+    };
 
 
-document.getElementById(
-"resultado-numero"
-).textContent =
-pedido.numero;
+    if (estado) {
+
+        estado.textContent =
+            estados[pedido.estado] ||
+            "Pedido recibido";
+
+    }
 
 
-const estados = {
+    if (cliente) {
 
-recibido:
-"Pedido recibido",
+        cliente.textContent =
+            `${pedido.cliente?.nombre || ""} ${pedido.cliente?.apellido || ""}`;
 
-preparacion:
-"En preparación",
-
-despachado:
-"Despachado",
-
-entregado:
-"Entregado"
-
-};
+    }
 
 
-document.getElementById(
-"resultado-estado"
-).textContent =
-estados[pedido.estado] ||
-"Pedido recibido";
+    if (total) {
+
+        total.textContent =
+            "$" + dinero(pedido.total || 0);
+
+    }
 
 
-document.getElementById(
-"cliente-pedido"
-).textContent =
-pedido.cliente.nombre +
-" " +
-pedido.cliente.apellido;
+    if (entrega) {
+
+        entrega.textContent =
+            pedido.cliente?.entrega === "retiro"
+                ? "Retiro"
+                : "Envío a domicilio";
+
+    }
 
 
-document.getElementById(
-"total-pedido"
-).textContent =
-"$" +
-dinero(pedido.total);
+    const ordenEstados = [
+        "recibido",
+        "preparacion",
+        "despachado",
+        "entregado"
+    ];
 
 
-document.getElementById(
-"entrega-pedido"
-).textContent =
-pedido.cliente.entrega ===
-"retiro"
-? "Retiro"
-: "Envío a domicilio";
+    const posicion =
+        ordenEstados.indexOf(
+            pedido.estado
+        );
 
 
-const ordenEstados = [
-"recibido",
-"preparacion",
-"despachado",
-"entregado"
-];
+    document
+        .querySelectorAll(".tracking-step")
+        .forEach((step, index) => {
 
+            step.classList.toggle(
+                "active",
+                index <= posicion
+            );
 
-const posicion =
-ordenEstados.indexOf(
-pedido.estado
-);
-
-
-document
-.querySelectorAll(
-".tracking-step"
-)
-.forEach(
-(step,index) => {
-
-step.classList.toggle(
-"active",
-index <= posicion
-);
-
-});
-
+        });
 
 }
 
 
 
-function mostrarError(
-mensaje
-){
+function mostrarError(mensaje) {
 
-error.textContent =
-mensaje;
+    if (!error) return;
+
+    error.textContent = mensaje;
+
+    error.classList.add("mostrar");
 
 }
 
 
 
 buscar?.addEventListener(
-"click",
-buscarPedido
+    "click",
+    buscarPedido
 );
 
 
 input?.addEventListener(
-"keydown",
-event => {
+    "keydown",
+    event => {
 
-if(
-event.key === "Enter"
-){
+        if (event.key === "Enter") {
 
-buscarPedido();
+            buscarPedido();
 
-}
+        }
 
-});
-
-
-const ultimo =
-localStorage.getItem(
-"maderaVivaUltimoPedido"
+    }
 );
 
 
-if(ultimo){
 
-input.value =
-ultimo;
+const ultimo =
+    localStorage.getItem(
+        "maderaVivaUltimoPedido"
+    );
 
-buscarPedido();
+
+if (ultimo && input) {
+
+    input.value = ultimo;
 
 }
