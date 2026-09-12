@@ -11,8 +11,7 @@ content="width=device-width, initial-scale=1.0">
 
 <meta
 name="description"
-content="Colección Madera Viva — muebles y objetos de madera."
->
+content="Madera Viva — muebles y objetos de madera.">
 
 <link
 rel="icon"
@@ -28,12 +27,13 @@ href="https://fonts.gstatic.com"
 crossorigin>
 
 <link
-href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap"
 rel="stylesheet">
 
+<!-- CSS EXCLUSIVO DE LA COLECCIÓN -->
 <link
 rel="stylesheet"
-href="../style/paginaoficial.css">
+href="../style/tienda.css">
 
 <title>Madera Viva | Colección</title>
 
@@ -43,13 +43,17 @@ href="../style/paginaoficial.css">
 <body class="shop-page">
 
 
-<header class="site-header">
+<!-- =========================
+HEADER
+========================= -->
 
-<div class="header-inner">
+<header class="shop-header">
+
+<div class="shop-header-inner">
 
 <a
 href="../../index.html"
-class="brand">
+class="shop-brand">
 
 <img
 src="../logo oficial/logo.png"
@@ -58,7 +62,7 @@ alt="Madera Viva">
 </a>
 
 
-<nav class="desktop-nav">
+<nav class="shop-nav">
 
 <a href="../../index.html">
 Inicio
@@ -67,7 +71,9 @@ Inicio
 <a
 href="./tienda.html"
 class="active">
+
 Colección
+
 </a>
 
 <a href="../../index.html#proceso">
@@ -81,13 +87,14 @@ Seguimiento
 </nav>
 
 
-<div class="header-actions">
+<div class="shop-actions">
 
 <a
 href="./tienda.html"
-class="header-shop">
+class="shop-button">
 
 Colección
+
 <span>↗</span>
 
 </a>
@@ -95,24 +102,22 @@ Colección
 
 <button
 id="header-cart"
-class="header-cart">
+class="shop-cart">
 
-<span class="cart-symbol">
-Bag
+<span>
+BAG
 </span>
 
-<span
-id="carrito-numero"
-class="cart-number">
+<strong id="carrito-numero">
 0
-</span>
+</strong>
 
 </button>
 
 
 <button
 id="menu-button"
-class="menu-button">
+class="shop-menu">
 
 <span></span>
 <span></span>
@@ -127,7 +132,7 @@ class="menu-button">
 
 <nav
 id="mobile-nav"
-class="mobile-nav">
+class="shop-mobile-nav">
 
 <a href="../../index.html">
 Inicio
@@ -154,24 +159,74 @@ Seguimiento
 <main>
 
 
-<section class="shop-hero">
+<!-- =========================
+HERO COLECCIÓN
+========================= -->
 
-<div>
+<section class="collection-hero">
 
-<span class="eyebrow">
+<div class="collection-hero-copy">
+
+<span class="collection-kicker">
 MADERA VIVA / COLECCIÓN
 </span>
 
+
 <h1>
-Piezas para
-<br>
-<em>vivirlas.</em>
+
+Diseño en madera,
+
+<em>
+para tu espacio.
+</em>
+
 </h1>
 
+
 <p>
-Diseños pensados para formar parte
-de tu espacio.
+
+Muebles y objetos de madera,
+pensados para formar parte de
+tu casa durante años.
+
 </p>
+
+
+<div class="collection-count">
+
+<span>
+01
+</span>
+
+<div></div>
+
+<span>
+06 PIEZAS
+</span>
+
+</div>
+
+</div>
+
+
+
+<div class="collection-hero-image">
+
+<img
+src="../productos/escritorio_turco.png"
+alt="Mueble de madera Madera Viva">
+
+<div class="hero-image-caption">
+
+<strong>
+MADERA REAL
+</strong>
+
+<span>
+DISEÑO · OFICIO · DURABILIDAD
+</span>
+
+</div>
 
 </div>
 
@@ -179,67 +234,260 @@ de tu espacio.
 
 
 
-<section class="catalog-section">
+<!-- =========================
+CATÁLOGO
+========================= -->
 
-<div class="catalog-top">
+<section class="collection-catalog">
 
-<span>
-01 — 06
+
+<!-- SIDEBAR -->
+
+<aside class="catalog-sidebar">
+
+<div class="filter-block">
+
+<span class="filter-title">
+CATEGORÍAS
 </span>
 
-<p>
-Explorá nuestra selección de muebles
-y objetos de madera.
-</p>
+
+<a
+href="#"
+class="filter-link active">
+
+Todos los productos
+
+</a>
+
+<a
+href="#"
+class="filter-link">
+
+Escritorios
+
+</a>
+
+<a
+href="#"
+class="filter-link">
+
+Mesas
+
+</a>
+
+<a
+href="#"
+class="filter-link">
+
+Muebles
+
+</a>
+
+<a
+href="#"
+class="filter-link">
+
+Objetos de madera
+
+</a>
 
 </div>
+
+
+
+<div class="filter-block">
+
+<span class="filter-title">
+MATERIAL
+</span>
+
+
+<label class="check-option">
+
+<input
+type="checkbox">
+
+<span>
+Madera maciza
+</span>
+
+</label>
+
+
+<label class="check-option">
+
+<input
+type="checkbox">
+
+<span>
+Madera natural
+</span>
+
+</label>
+
+
+<label class="check-option">
+
+<input
+type="checkbox">
+
+<span>
+Madera reciclada
+</span>
+
+</label>
+
+</div>
+
+
+
+<div class="filter-block">
+
+<span class="filter-title">
+PRECIO
+</span>
+
+<div class="price-line">
+
+<span></span>
+
+<span></span>
+
+</div>
+
+<div class="price-values">
+
+$0
+
+<span>
+$500.000+
+</span>
+
+</div>
+
+</div>
+
+</aside>
+
+
+
+<!-- PRODUCTOS -->
+
+<div class="catalog-content">
+
+
+<div class="catalog-toolbar">
+
+<div>
+
+<span class="catalog-small">
+COLECCIÓN
+</span>
+
+<h2>
+Piezas para vivirlas.
+</h2>
+
+</div>
+
+
+<div class="catalog-sort">
+
+<span>
+ORDENAR POR
+</span>
+
+<select>
+
+<option>
+Más recientes
+</option>
+
+<option>
+Menor precio
+</option>
+
+<option>
+Mayor precio
+</option>
+
+</select>
+
+</div>
+
+</div>
+
 
 
 <div
 id="contenedor-productos"
 class="catalog-grid">
 
+<!--
+LOS PRODUCTOS SE CARGAN AUTOMÁTICAMENTE
+DESDE data/productos.json
+-->
+
+</div>
+
 </div>
 
 </section>
 
 
 
-<section class="shop-logistics">
+<!-- =========================
+COMPRA
+========================= -->
+
+<section class="collection-bottom">
 
 <div>
 
-<span class="eyebrow">
+<span class="collection-kicker">
 COMPRA SIMPLE
 </span>
 
 <h2>
+
 Elegís.
+
 <br>
+
 Comprás.
+
 <br>
+
 <em>Recibís.</em>
+
 </h2>
 
 </div>
 
 
-<div class="shop-logistics-text">
+<div class="collection-bottom-copy">
 
 <p>
-Podés realizar todo el pedido online,
-cargar tus datos de entrega y elegir
-el medio de pago sin necesidad
-de contactarnos.
+
+Elegí tu pieza, agregala al pedido,
+completá tus datos y seleccioná
+el medio de pago.
+
+Todo el proceso se realiza online.
+
 </p>
 
 
 <a
 href="./seguimiento.html"
-class="text-link">
+class="collection-link">
 
 ¿Cómo sigo mi pedido?
-<span>→</span>
+
+<span>
+→
+</span>
 
 </a>
 
@@ -250,6 +498,10 @@ class="text-link">
 </main>
 
 
+
+<!-- =========================
+CARRITO
+========================= -->
 
 <aside
 id="carrito-lista"
@@ -292,6 +544,7 @@ class="cart-close">
 <div
 id="carrito-items"
 class="cart-items">
+
 </div>
 
 
@@ -326,7 +579,10 @@ id="carrito-checkout"
 class="checkout-button">
 
 Continuar con el pedido
-<span>→</span>
+
+<span>
+→
+</span>
 
 </button>
 
@@ -346,6 +602,7 @@ Vaciar pedido
 </aside>
 
 
+
 <div
 id="mensaje-carrito"
 class="cart-message">
@@ -353,7 +610,11 @@ class="cart-message">
 
 
 
-<footer>
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer class="shop-footer">
 
 <div class="footer-main">
 
@@ -407,6 +668,19 @@ Seguimiento
 
 </div>
 
+
+<div class="footer-location">
+
+<span>
+BUENOS AIRES
+</span>
+
+<p>
+Diseño y fabricación
+</p>
+
+</div>
+
 </div>
 
 
@@ -423,6 +697,7 @@ Diseño y desarrollo web · AlwaysHouse
 </div>
 
 </footer>
+
 
 
 <script src="../js/carrito.js"></script>
