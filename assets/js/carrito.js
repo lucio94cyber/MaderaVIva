@@ -543,13 +543,8 @@ function abrirCarrito() {
 
   if (!drawer) return;
 
-  /*
-    Forzamos la apertura desde JS.
-    Esto funciona tanto desde index
-    como desde las páginas internas.
-  */
-
   drawer.classList.add("open");
+  drawer.classList.add("mostrar");
 
   document.body.classList.add(
     "cart-open"
@@ -570,9 +565,8 @@ function cerrarCarrito() {
 
   if (!drawer) return;
 
-  drawer.classList.remove(
-    "open"
-  );
+  drawer.classList.remove("open");
+  drawer.classList.remove("mostrar");
 
   document.body.classList.remove(
     "cart-open"
