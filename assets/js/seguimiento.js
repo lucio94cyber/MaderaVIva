@@ -15,9 +15,7 @@ function dinero(valor) {
 
 function buscarPedido() {
 
-    const numero = input.value
-        .trim()
-        .toUpperCase();
+    const numero = input.value.trim().toUpperCase();
 
     if (!numero) {
 
@@ -28,9 +26,10 @@ function buscarPedido() {
     }
 
 
-    const pedidos = JSON.parse(
-        localStorage.getItem(ORDER_KEY)
-    ) || [];
+    const pedidos =
+        JSON.parse(
+            localStorage.getItem(ORDER_KEY)
+        ) || [];
 
 
     const pedido = pedidos.find(
@@ -55,43 +54,11 @@ function buscarPedido() {
 
     error.textContent = "";
 
-    mostrarPedido(pedido);
-
-}
-
-
-
-function mostrarPedido(pedido) {
-
     resultado.classList.add("mostrar");
 
-
-    const numero = document.getElementById(
+    document.getElementById(
         "resultado-numero"
-    );
-
-    const estado = document.getElementById(
-        "resultado-estado"
-    );
-
-    const cliente = document.getElementById(
-        "cliente-pedido"
-    );
-
-    const total = document.getElementById(
-        "total-pedido"
-    );
-
-    const entrega = document.getElementById(
-        "entrega-pedido"
-    );
-
-
-    if (numero) {
-
-        numero.textContent = pedido.numero;
-
-    }
+    ).textContent = pedido.numero;
 
 
     const estados = {
@@ -107,39 +74,31 @@ function mostrarPedido(pedido) {
     };
 
 
-    if (estado) {
-
-        estado.textContent =
-            estados[pedido.estado] ||
-            "Pedido recibido";
-
-    }
+    document.getElementById(
+        "resultado-estado"
+    ).textContent =
+        estados[pedido.estado] ||
+        "Pedido recibido";
 
 
-    if (cliente) {
-
-        cliente.textContent =
-            `${pedido.cliente?.nombre || ""} ${pedido.cliente?.apellido || ""}`;
-
-    }
+    document.getElementById(
+        "cliente-pedido"
+    ).textContent =
+        `${pedido.cliente?.nombre || ""} ${pedido.cliente?.apellido || ""}`;
 
 
-    if (total) {
-
-        total.textContent =
-            "$" + dinero(pedido.total || 0);
-
-    }
+    document.getElementById(
+        "total-pedido"
+    ).textContent =
+        "$" + dinero(pedido.total || 0);
 
 
-    if (entrega) {
-
-        entrega.textContent =
-            pedido.cliente?.entrega === "retiro"
-                ? "Retiro"
-                : "Envío a domicilio";
-
-    }
+    document.getElementById(
+        "entrega-pedido"
+    ).textContent =
+        pedido.cliente?.entrega === "retiro"
+            ? "Retiro"
+            : "Envío a domicilio";
 
 
     const ordenEstados = [
@@ -151,9 +110,7 @@ function mostrarPedido(pedido) {
 
 
     const posicion =
-        ordenEstados.indexOf(
-            pedido.estado
-        );
+        ordenEstados.indexOf(pedido.estado);
 
 
     document
@@ -170,10 +127,7 @@ function mostrarPedido(pedido) {
 }
 
 
-
 function mostrarError(mensaje) {
-
-    if (!error) return;
 
     error.textContent = mensaje;
 
@@ -182,14 +136,13 @@ function mostrarError(mensaje) {
 }
 
 
-
-buscar?.addEventListener(
+buscar.addEventListener(
     "click",
     buscarPedido
 );
 
 
-input?.addEventListener(
+input.addEventListener(
     "keydown",
     event => {
 
@@ -203,15 +156,16 @@ input?.addEventListener(
 );
 
 
-
 const ultimo =
     localStorage.getItem(
         "maderaVivaUltimoPedido"
     );
 
 
-if (ultimo && input) {
+if (ultimo) {
 
     input.value = ultimo;
+
+    buscarPedido();
 
 }
