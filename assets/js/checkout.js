@@ -201,7 +201,7 @@ fecha.getDate()
 const random =
 Math.floor(
 1000 +
-Math.random()*9000
+Math.random() * 9000
 );
 
 
@@ -361,6 +361,15 @@ localStorage.setItem(
 );
 
 }
+
+
+/* =====================================================
+   NUEVO:
+   Vaciar carrito después de generar correctamente
+   el pedido.
+   ===================================================== */
+
+localStorage.removeItem(CART_KEY);
 
 
 window.location.href =
