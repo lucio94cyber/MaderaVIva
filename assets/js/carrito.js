@@ -549,7 +549,7 @@ function abrirCarrito() {
     como desde las páginas internas.
   */
 
-  drawer.classList.add("mostrar");
+  drawer.classList.add("open");
 
   document.body.classList.add(
     "cart-open"
@@ -571,7 +571,7 @@ function cerrarCarrito() {
   if (!drawer) return;
 
   drawer.classList.remove(
-    "mostrar"
+    "open"
   );
 
   document.body.classList.remove(
